@@ -19,8 +19,11 @@ module.exports.getConfig = function ( key ) {
 module.exports.getProjectPath = function () {
     return g_project_path;
 }
+module.exports.getLogDir = function () {
+    return module.exports.getProjectPath() + module.exports.getConfig('log_dir');
+}
 module.exports.getHtmlDir = function () {
-    return exports.module.getConfig('html_dir');
+    return exports.module.getProjectPath() + exports.module.getConfig('html_dir');
 }
 // HTTP
 module.exports.getRequestPublicIP = function( request )

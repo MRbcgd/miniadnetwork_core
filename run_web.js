@@ -11,9 +11,7 @@ const EQUIP  = require('./common/equip.js');
 const LOG    = require('./common/log.js');
 
 // LOG
-const LOG_DIR  = EQUIP.getConfig('log_dir');
-const PRJ_PATH = EQUIP.getProjectPath();
-const LOG_PATH = LOG_DIR + PRJ_PATH;
+const LOG_PATH = EQUIP.getLogDir();
 LOG.setLogPath(LOG_PATH);
 
 // SERVER
@@ -99,5 +97,5 @@ if( cluster.isMaster ) {
 	LOG.log(null, '- Running [PID:' + process.pid + ']');
 	LOG.log(null, '-----------------------------------------------');
 
-    SERVER.runServer(run_name);
+    SERVER.runServer();
 }

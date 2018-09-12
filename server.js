@@ -11,9 +11,7 @@ const url  = require('url');
 const EQUIP = require('./common/equip.js');
 const LOG   = require('./common/log.js');
 // HTTP
-const PORT     = EQUIP.getConfig('port');
-// DIR
-const HTML_DIR = EQUIP.getConfig('html_dir');
+const PORT     = EQUIP.getConfig('port') || 8080;
 
 var g_server = null; // SERVER
 
@@ -21,12 +19,11 @@ function onServerRecvAfter( req, res )
 {
     LOG.log(null, "RECEIVED URL: " + req.url);
 
-    var url_qry  = Equip.parseURL(req.url);
+    var url_qry  = EQUIP.parseURL(req.url);
 	var url_obj  = null;
     var page     = url_qry.arr_path[0];
 	var page_mod = url_qry.arr_path[1];
 
-    // working spot
     switch ( page ) {
         default:
     }
@@ -59,7 +56,7 @@ function onServerAccepted(req, res)
 	}
 }
 
-module.exports.runServer = function( run_name ) {
+module.exports.runServer = function() {
     g_server = http.createServer();
 
 	g_server.on('close', function( err, socket ) {
