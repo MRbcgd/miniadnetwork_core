@@ -1,17 +1,18 @@
 /*
     author     : bak chulhyong
     created    : 2018 - 09 - 12
-    modified   : 2018 - 09 - 12
+    modified   : 2018 - 09 - 13
     description: server
 */
 const fs   = require('fs');
 const http = require('http');
 const url  = require('url');
 
-const EQUIP = require('./common/equip.js');
-const LOG   = require('./common/log.js');
+const LOG    = require('./common/log.js');
+const EQUIP  = require('./common/equip.js');
+
 // HTTP
-const PORT     = EQUIP.getConfig('port') || 8080;
+const PORT = EQUIP.getConfig('port') || 8080;
 
 var g_server = null; // SERVER
 
@@ -21,13 +22,11 @@ function onServerRecvAfter( req, res )
 
     var url_qry  = EQUIP.parseURL(req.url);
 	var url_obj  = null;
-    var page     = url_qry.arr_path[0];
-	var page_mod = url_qry.arr_path[1];
 
-    switch ( page ) {
-        default:
-    }
+    if ( url_qry.arr_path == null ) url_qry.arr_path = [];
 
+    EQUIP.getModule(url_qry.arr_path)(req, res);
+    return;
 }
 function onServerAccepted(req, res)
 {

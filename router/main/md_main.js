@@ -6,18 +6,18 @@
 */
 const fs = require('fs');
 
-const EQUIP = require('../../common/equip.js');
 const LOG   = require('../../common/log.js');
+const EQUIP = require('../../common/test.js');
 // DIR
-const HTML_DIR = EQUIP.getHtmlDir();
+const HTML_DIR  = EQUIP.getHtmlDir();
 
-module.exports.get_main = function ( req, res ) {
-    fs.readFile(HTML_DIR + 'main', 'utf8', function( ferr, data ) {
-		if( ferr != null ) {
-            LOG.err(null, '', ferr);
-            return;
-        }
+module.exports.FC_LIST = {
+    "default": "getMain",
+}
+// main page
+module.exports.getMain = function ( req, res ) {
+    var dir = HTML_DIR + 'main/index.html';
 
-		return;
-	});
+    EQUIP.writePage(dir, res);
+    return;
 }
