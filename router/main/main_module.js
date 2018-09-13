@@ -6,6 +6,5 @@
 */
 // MODULE LIST
 module.exports.MD_LIST = {
-    "default": "mdMain",
+    "default": require('./md_main'),
 }
-module.exports.mdMain = require('./md_main');

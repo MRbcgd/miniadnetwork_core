@@ -6,7 +6,5 @@
 */
 // PAGE LIST
 module.exports.PG_LIST = {
-    "default": "main",
+    "default": require('./main/main_module.js'),
 }
-
-module.exports.main = require('./main/main_module.js');

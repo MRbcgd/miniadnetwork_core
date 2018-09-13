@@ -10,11 +10,25 @@ const url  = require('url');
 
 const LOG    = require('./common/log.js');
 const EQUIP  = require('./common/equip.js');
+const ROUTER = require('./router/module.js');
 
 // HTTP
 const PORT = EQUIP.getConfig('port') || 8080;
 
 var g_server = null; // SERVER
+
+// module
+function getModule ( arr_path ) {
+    var page      = arr_path.shift() || 'default';
+    var page_mode = arr_path.shift() || 'default';
+    var func_mode = arr_path.shift() || 'default';
+
+    var pg_list = ROUTER['PG_LIST'][page]       || ROUTER['PG_LIST']['default'];
+    var md_list = pg_list['MD_LIST'][page_mode] || pg_list['MD_LIST']['default'];
+    var fc_list = md_list['FC_LIST'][func_mode] || md_list['FC_LIST']['default'];
+
+    return fc_list;
+}
 
 function onServerRecvAfter( req, res )
 {
@@ -24,8 +38,7 @@ function onServerRecvAfter( req, res )
 	var url_obj  = null;
 
     if ( url_qry.arr_path == null ) url_qry.arr_path = [];
-
-    EQUIP.getModule(url_qry.arr_path)(req, res);
+    getModule(url_qry.arr_path)(req, res);
     return;
 }
 function onServerAccepted(req, res)

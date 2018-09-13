@@ -6,7 +6,6 @@
 */
 const fs = require('fs');
 
-const ROUTER = require('../router/module.js');
 const CONFIG = require('./config.js');
 
 const JSON_DATA  = ( CONFIG['config'] || null );
@@ -101,16 +100,4 @@ module.exports.writePage = function ( dir, res ) {
         res.end();
 		return;
 	});
-}
-// module
-module.exports.getModule = function ( arr_path ) {
-    var page      = arr_path.shift() || 'default';
-    var page_mode = arr_path.shift() || 'default';
-    var func_mode = arr_path.shift() || 'default';
-
-    var pg_list = ROUTER['PG_LIST'][page]       || ROUTER['PG_LIST']['default'];
-    var md_list = pg_list['MD_LIST'][page_mode] || pg_list['MD_LIST']['default'];
-    var fc_list = md_list['FC_LIST'][func_mode] || md_list['FC_LIST']['default'];
-
-    return fc_list;
 }
