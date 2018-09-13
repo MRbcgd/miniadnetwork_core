@@ -2,7 +2,7 @@
   "name": "miniadnetwork",
   "version": "1.0.0",
   "description": "sample of adnetwork",
-  "main": "run_web.js",
+  "main": "server.js",
   "scripts": {
     "test": "divide web server"
   },
@@ -23,6 +23,6 @@
     "node": "9.4.0" ,
     "npm" : "5.6.0"
     },
-    "start": "node run_web.js"
+    "start": "node server.js"
 
 }
