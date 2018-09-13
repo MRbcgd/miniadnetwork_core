@@ -27,6 +27,9 @@ module.exports.getLogDir = function () {
 module.exports.getHtmlDir = function () {
     return module.exports.getProjectPath() + module.exports.getConfig('html_dir');
 }
+module.exports.getAssetDir = function () {
+    return module.exports.getProjectPath() + module.exports.getConfig('asset_dir');
+}
 // HTTP
 module.exports.getRequestPublicIP = function( request ) {
 	var cli_ip = '';
@@ -87,14 +90,14 @@ module.exports.parseURL = function( url_qry ) {
     return rtn;
 }
 // FILE
-module.exports.writePage = function ( dir, res ) {
+module.exports.writePage = function ( dir, type, res ) {
     fs.readFile(dir, 'utf8', function( ferr, data ) {
 		if( ferr != null ) {
             LOG.err(null, '[FERROR]: ', ferr);
             return;
         }
 
-        res.setHeader('Content-Type', 'text/html');
+        res.setHeader('Content-Type', type);
         res.setHeader('charset', 'utf-8');
         res.write(data);
         res.end();

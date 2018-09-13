@@ -18,6 +18,6 @@ module.exports.FC_LIST = {
 function getMain ( req, res ) {
     var dir = HTML_DIR + 'main/index.html';
 
-    EQUIP.writePage(dir, res);
+    EQUIP.writePage(dir, 'text/html', res);
     return;
 }
