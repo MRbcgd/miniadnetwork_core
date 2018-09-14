@@ -19,3 +19,26 @@ function reqXHttp ( url, data, callback ) {
         return;
     }
 }
+// ORG: http://cofs.tistory.com/267 [CofS]
+function byteCheck ( el ){
+    var codeByte = 0;
+    for (var idx = 0; idx < el.length; idx++) {
+        var oneChar = escape(el.charAt(idx));
+        if ( oneChar.length == 1 ) {
+            codeByte ++;
+        } else if (oneChar.indexOf("%u") != -1) {
+            codeByte += 2;
+        } else if (oneChar.indexOf("%") != -1) {
+            codeByte ++;
+        }
+    }
+    return codeByte;
+}
+function isByteLength ( str, length ) {
+    if ( str != null && length >= 0 ) {
+        if ( str.length > length ) return false;
+
+        return true;
+    }
+    return false;
+}

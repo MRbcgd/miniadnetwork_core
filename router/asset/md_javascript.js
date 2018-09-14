@@ -1,7 +1,7 @@
 /*
     author     : bak chulhyong
     created    : 2018 - 09 - 13
-    modified   : 2018 - 09 - 13
+    modified   : 2018 - 09 - 14
     description: main functions
 */
 const fs = require('fs');
@@ -13,9 +13,10 @@ const HTML_DIR = EQUIP.getHtmlDir();
 const ASST_DIR = EQUIP.getAssetDir();
 
 module.exports.FC_LIST = {
-    "default": getMain  ,
-    "common" : getCommon,
-    "advert" : getAdvert,
+    "default": getMain   ,
+    "common" : getCommon ,
+    "advert" : getAdvert ,
+    "content": getContent,
 }
 // main page
 function getMain ( req, res ) {
@@ -32,6 +33,12 @@ function getCommon ( req, res ) {
 }
 function getAdvert ( req, res ) {
     var dir = ASST_DIR + 'javascript/advert.js';
+
+    EQUIP.writePage(dir, 'text/javascript', res);
+    return;
+}
+function getContent ( req, res ) {
+    var dir = ASST_DIR + 'javascript/content.js';
 
     EQUIP.writePage(dir, 'text/javascript', res);
     return;
