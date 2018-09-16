@@ -16,6 +16,7 @@ LOG.setLogPath(LOG_PATH);
 
 // SERVER
 const SERVER = require('./socket_server.js');
+const dbConn = require('./db_connect.js');
 
 var g_is_shutdown   = false; // grcaefulshutdown
 

@@ -21,23 +21,20 @@
 
             <b>Target Gender: </b>
             <select class="" name="" id="tgt_gender">
-                <option value="a">All  </option>
-                <option value="m">Man  </option>
-                <option value="w">Woman</option>
             </select><br>
 
             <b>Target Age: </b>
             <select class="" name="" id="tgt_age">
-                <option value="a">All     </option>
-                <option value="0">0 - 10  </option>
-                <option value="1">10 - 20 </option>
-                <option value="2">20 - 20 </option>
-                <option value="3">30 - 40 </option>
-                <option value="4">40 - 100</option>
             </select><br>
 
             <button type="button" name="button" onclick="addContent()">Add</button><br>
         </div>
+        <script type="text/javascript">
+            window.onload = function () {
+                getTargetList();
+                return;
+            }
+        </script>
         <script src="/asset/javascript/common"></script>
         <script src="/asset/javascript/content"></script>
     </body>

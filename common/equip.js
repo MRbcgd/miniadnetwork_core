@@ -1,14 +1,16 @@
 /*
     author     : bak chulhyong
     created    : 2018 - 09 - 12
-    modified   : 2018 - 09 - 13
+    modified   : 2018 - 09 - 16
     description: common function
 */
 const fs = require('fs');
 
 const CONFIG = require('./config.js');
+const ERROR  = require('./error.js');
+const JSON_DATA   = ( CONFIG['config'] || null );
+const ERROR_DATA  = ( ERROR['error']   || null );
 
-const JSON_DATA  = ( CONFIG['config'] || null );
 const G_PRJ_PATH = ( __dirname + '/..' );
 
 // CONFIG
@@ -52,6 +54,26 @@ module.exports.getRequestPublicIP = function( request ) {
 	}
 
 	return cli_ip;
+}
+module.exports.returnClient = function ( code, res, data ) {
+    var result = {
+        "code"  : ERROR_DATA[code],
+        "data"  : data            ,
+    }
+    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('charset', 'utf-8');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Max-Age', '2520');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, X-Requested-With, Session');
+    res.setHeader('Access-Control-Expose-Headers', 'DAV, content-length, Allow');
+    res.setHeader('Cache-Control', 'no-cache,no-store');
+    res.setHeader('Connection', 'close');
+
+    res.writeHead(200);
+    res.write(JSON.stringify(result));
+    res.end();
+    return;
 }
 module.exports.parseURL = function( url_qry ) {
 	var rtn    = {};
@@ -103,4 +125,20 @@ module.exports.writePage = function ( dir, type, res ) {
         res.end();
 		return;
 	});
+}
+// Validity
+// ORG: http://cofs.tistory.com/267 [CofS]
+module.exports.byteCheck = function ( el ) {
+    var codeByte = 0;
+    for (var idx = 0; idx < el.length; idx++) {
+        var oneChar = escape(el.charAt(idx));
+        if ( oneChar.length == 1 ) {
+            codeByte ++;
+        } else if (oneChar.indexOf("%u") != -1) {
+            codeByte += 2;
+        } else if (oneChar.indexOf("%") != -1) {
+            codeByte ++;
+        }
+    }
+    return codeByte;
 }
