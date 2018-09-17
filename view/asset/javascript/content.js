@@ -1,3 +1,43 @@
+function getContentList ( ctt_status ) {
+    var url = '/content/list/selContentList';
+    var self = {};
+    self.ctt_status = ( ctt_status || null );
+
+    reqXHttp('POST', url, self, function ( result ) {
+        result = JSON.parse(result);
+
+        if ( result.code == 1000 ) {
+            var ctt_tbody = ( document.getElementById('ctt_tbody') || null );
+            var data = result.data || [];
+
+            if ( ctt_tbody == null ) {
+                alert("[Error]: Check Object Status");
+                return;
+            }
+
+            var record = null;
+            for (var rows = 0; rows < data.length; rows++) {
+                record = data[rows];
+
+                ctt_tbody.innerHTML += "<tr>"
+                                        + "<td>" + record['ctt_idx']     + "</td>"
+                                        + "<td>" + record['ctt_key']     + "</td>"
+                                        + "<td>" + record['ctt_name']    + "</td>"
+                                        + "<td>" + record['ctt_owner']   + "</td>"
+                                        + "<td>" + record['email']       + "</td>"
+                                        + "<td>" + record['ctt_status']  + "</td>"
+                                        + "<td>" + record['ctt_created'] + "</td>"
+                                        + "<td>" + record['ctt_updated'] + "</td>"
+                                        + "<td>" + record['mini_point']  + "</td>"
+                                    + "</tr>"
+                ;
+            }
+        } else {
+            alert('[Error]:' + result.code);
+        }
+        return;
+    });
+}
 function addContent () {
     var url = '/content/regist/add';
     var self = {};

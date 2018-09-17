@@ -7,5 +7,6 @@
 // MODULE LIST
 module.exports.MD_LIST = {
     "default": require('./md_content'),
-    "regist" : require('./md_regist'),
+    "list"   : require('./md_list')   ,
+    "regist" : require('./md_regist') ,
 }

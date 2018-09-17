@@ -1,3 +1,42 @@
+function getAdvertList ( adv_status ) {
+    var url = '/advert/list/selAdvertList';
+    var self = {};
+    self.adv_status = ( adv_status || null );
+
+    reqXHttp('POST', url, self, function ( result ) {
+        result = JSON.parse(result);
+
+        if ( result.code == 1000 ) {
+            var adv_tbody = ( document.getElementById('adv_tbody') || null );
+            var data = result.data || [];
+
+            if ( adv_tbody == null ) {
+                alert("[Error]: Check Object Status");
+                return;
+            }
+
+            var record = null;
+            for (var rows = 0; rows < data.length; rows++) {
+                record = data[rows];
+
+                adv_tbody.innerHTML += "<tr>"
+                                        + "<td>" + record['adv_idx']     + "</td>"
+                                        + "<td>" + record['adv_owner']   + "</td>"
+                                        + "<td>" + record['adv_desc']    + "</td>"
+                                        + "<td>" + record['adv_link']    + "</td>"
+                                        + "<td>" + record['adv_status']  + "</td>"
+                                        + "<td>" + record['adv_created'] + "</td>"
+                                        + "<td>" + record['adv_updated'] + "</td>"
+                                        + "<td>" + record['used_point']  + "</td>"
+                                    + "</tr>"
+                ;
+            }
+        } else {
+            alert('[Error]:' + result.code);
+        }
+        return;
+    });
+}
 function addAdvert () {
     var url = '/advert/regist/add';
     var self = {};

@@ -1,7 +1,7 @@
 /*
     author     : bak chulhyong
     created    : 2018 - 09 - 14
-    modified   : 2018 - 09 - 16
+    modified   : 2018 - 09 - 17
     description: content regist functions
 */
 const fs = require('fs');
@@ -54,6 +54,8 @@ function addContent ( req, res ) {
     self.email      = data.email;
     self.tgt_gender = data.tgt_gender;
     self.tgt_age    = data.tgt_age;
+    // bak chulhyong add 20180917 temporary data
+    self.ctt_status = 'P';
 
     dbAdvert.beginTransaction(self).then(function ( values ) {
         var self = values.self;
@@ -67,7 +69,7 @@ function addContent ( req, res ) {
 
         // insert content
         dbAdvert.tbContent.insContent(conn, self, self.ctt_name, self.ctt_owner,
-            self.email).then(function ( cvalues ) {
+            self.email, self.ctt_status).then(function ( cvalues ) {
                 var self = cvalues.self;
             	var err  = cvalues.err;
 

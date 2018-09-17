@@ -2,7 +2,7 @@
     author     : bak chulhyong
     created    : 2018 - 09 - 13
     modified   : 2018 - 09 - 17
-    description: javascript functions
+    description: css functions
 */
 const fs = require('fs');
 
@@ -15,8 +15,6 @@ const ASST_DIR = EQUIP.getAssetDir();
 module.exports.FC_LIST = {
     "default": getMain   ,
     "common" : getCommon ,
-    "advert" : getAdvert ,
-    "content": getContent,
 }
 // main page
 function getMain ( req, res ) {
@@ -26,20 +24,8 @@ function getMain ( req, res ) {
     return;
 }
 function getCommon ( req, res ) {
-    var dir = ASST_DIR + 'javascript/common.js';
+    var dir = ASST_DIR + 'css/common.css';
 
-    EQUIP.writePage(dir, 'text/javascript', res);
-    return;
-}
-function getAdvert ( req, res ) {
-    var dir = ASST_DIR + 'javascript/advert.js';
-
-    EQUIP.writePage(dir, 'text/javascript', res);
-    return;
-}
-function getContent ( req, res ) {
-    var dir = ASST_DIR + 'javascript/content.js';
-
-    EQUIP.writePage(dir, 'text/javascript', res);
+    EQUIP.writePage(dir, 'text/css', res);
     return;
 }

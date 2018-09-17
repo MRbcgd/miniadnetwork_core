@@ -1,7 +1,7 @@
 /*
     author     : bak chulhyong
     created    : 2018 - 09 - 13
-    modified   : 2018 - 09 - 13
+    modified   : 2018 - 09 - 17
     description: advert regist functions
 */
 const fs = require('fs');
@@ -28,13 +28,12 @@ function addAdvert ( req, res ) {
     var data        = JSON.parse(req.body);
     var self        = this;
     var rows        = {};
+    var byte_len    = 0;
+    var isByte      = true;
 
-    var byte_len = 0;
-    var isByte = true;
     for ( var key in data ) {
         byte_len = EQUIP.byteCheck(( data[key] || '' ));
 
-        console.log(key);
         if ( key == 'adv_owner'  && (byte_len > 0 && byte_len <= 64)  ) continue;
         if ( key == 'adv_desc'   && (byte_len > 0 && byte_len <= 128) ) continue;
         if ( key == 'adv_link'   && (byte_len > 0 && byte_len <= 512) ) continue;
@@ -52,8 +51,11 @@ function addAdvert ( req, res ) {
 
     self.adv_owner  = data.adv_owner;
     self.adv_desc   = data.adv_desc;
+    self.adv_link   = data.adv_link;
     self.tgt_gender = data.tgt_gender;
     self.tgt_age    = data.tgt_age;
+    // bak chulhyong add 20180917 temporary data
+    self.adv_status = 'P';
 
     dbAdvert.beginTransaction(self).then(function ( values ) {
         var self = values.self;
@@ -66,8 +68,8 @@ function addAdvert ( req, res ) {
         }
 
         // insert content
-        dbAdvert.tbAdvert.insAdvert(conn, self, self.adv_owner, self.adv_desc
-        ).then(function ( cvalues ) {
+        dbAdvert.tbAdvert.insAdvert(conn, self, self.adv_owner, self.adv_desc,
+        self.adv_link, self.adv_status).then(function ( cvalues ) {
                 var self = cvalues.self;
                 var err  = cvalues.err;
 
