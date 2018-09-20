@@ -51,11 +51,11 @@ function dateFormat ( date ) {
     if ( (date instanceof Date) == false ) return null;
 
     var full_year    = date.getFullYear();
-    var full_month   = date.getMonth() + 1;
-    var full_date    = date.getDate();
-    var full_hours   = date.getHours();
-    var full_minutes = date.getMinutes();
-    var full_seconds = date.getSeconds();
+    var full_month   = ('0' + (date.getMonth() + 1)).slice(-2);
+    var full_date    = ('0' + (date.getDate())).slice(-2);
+    var full_hours   = ('0' + (date.getHours())).slice(-2);
+    var full_minutes = ('0' + (date.getMinutes())).slice(-2);
+    var full_seconds = ('0' + (date.getSeconds())).slice(-2);
 
     return full_year + '-' + full_month + '-' + full_date + " " + full_hours + ":" + full_minutes + ":" + full_seconds;
 }

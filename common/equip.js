@@ -142,3 +142,16 @@ module.exports.byteCheck = function ( el ) {
     }
     return codeByte;
 }
+// date
+module.exports.getCurrentTime = function () {
+    var date = new Date ();
+    var full_year    = date.getFullYear();
+    var full_month   = ('0' + (date.getMonth() + 1)).slice(-2);
+    var full_date    = ('0' + (date.getDate())).slice(-2);
+    var full_hours   = ('0' + (date.getHours())).slice(-2);
+    var full_minutes = ('0' + (date.getMinutes())).slice(-2);
+    var full_seconds = ('0' + (date.getSeconds())).slice(-2);
+
+    return full_year + '-' + full_month + '-' + full_date + " " + full_hours + ":" + full_minutes + ":" + full_seconds;
+
+}
