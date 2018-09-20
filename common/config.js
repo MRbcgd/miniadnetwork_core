@@ -15,7 +15,7 @@ module.exports.config = {
         "user"              : 'bb199af2d42a06'                  ,
         "password"          : '9a2b0dbb67e8365'                 ,
         "database"          : 'heroku_8dc2d6c2cd1cfdb'          ,
-        "connectionLimit"   : 20                                ,
+        "connectionLimit"   : 5                                 ,
         "waitForConnections": true                              ,
         "queueLimit"        : 0                                 ,
     }                            ,
