@@ -75,8 +75,8 @@ module.exports.connect = function( dbname, callback ) {
 
 	// Limit Connection Count
 	let ccnt = dbcfg.connectionLimit;
-	if( ccnt == null || ccnt < 5 )
-		ccnt = 5;
+	if( ccnt == null || ccnt < 0 )
+		ccnt = 0;
 	ccnt = Math.round(ccnt * 30 / 100);
 	LOG.log(null, "### DB[" + dbname + "] Prepare Count [" + ccnt + "]");
 
