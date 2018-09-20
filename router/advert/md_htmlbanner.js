@@ -2,7 +2,7 @@
     author     : bak chulhyong
     created    : 2018 - 09 - 14
     modified   : 2018 - 09 - 14
-    description: content functions
+    description: banner functions
 */
 const fs = require('fs');
 
@@ -12,12 +12,16 @@ const LOG   = require('../../common/log.js');
 const HTML_DIR  = EQUIP.getHtmlDir();
 
 module.exports.FC_LIST = {
-    "default": getContent,
+    "default"   : returnDefault,
+    "getBanner" : getBanner    ,
 }
-// main page
-function getContent ( req, res ) {
-    var dir = HTML_DIR + 'content/index.html';
 
-    EQUIP.writePage(dir, 'text/html', res);
+function returnDefault ( req, res ) {
+    EQUIP.returnClient('INVALID_URL', res, null);
+    return;
+}
+function getBanner ( req, res ) {
+    EQUIP.returnClient('SUCCESS', res, null);
+    console.log("getBanner");
     return;
 }

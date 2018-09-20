@@ -1,8 +1,8 @@
 /*
     author     : bak chulhyong
     created    : 2018 - 09 - 13
-    modified   : 2018 - 09 - 13
-    description: main functions
+    modified   : 2018 - 09 - 20
+    description: default functions
 */
 const fs = require('fs');
 
@@ -12,12 +12,10 @@ const LOG   = require('../../common/log.js');
 const HTML_DIR  = EQUIP.getHtmlDir();
 
 module.exports.FC_LIST = {
-    "default": getMain,
+    "default": returnDefault,
 }
 // main page
-function getMain ( req, res ) {
-    var dir = HTML_DIR + 'main/index.html';
-
-    EQUIP.writePage(dir, 'text/html', res);
+function returnDefault ( req, res ) {
+    EQUIP.returnClient('INVALID_URL', res, null);
     return;
 }
