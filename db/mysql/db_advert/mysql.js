@@ -82,15 +82,17 @@ module.exports.connect = function( dbname, callback ) {
 
     let cpos;
 	for( cpos=0; cpos< ccnt; cpos++ ) {
-		g_dbpool.getConnection(function(err, connection) {
+        g_dbpool.getConnection(function(err, connection) {
             if( err != null ) {
                 LOG.err(null, "### DB[" + dbname + "] getConnection Error [" + err + "]");
             } else {
                 LOG.log(null, "### DB[" + dbname + "] getConnection OK! [" + connection.threadId + "]");
             }
-            if( connection != null )
+
+            if( connection != null ) {
                 connection.release();
-		});
+            }
+        });
 	}
 
     g_dbpool.getConnection(function(err, connection) {
@@ -99,8 +101,10 @@ module.exports.connect = function( dbname, callback ) {
         } else {
             LOG.log(null, "### DB[" + dbname + "] getConnection OK! [" + connection.threadId + "]");
         }
-        if( connection != null )
+
+        if( connection != null ) {
             connection.release();
+        }
         callback(err);
     });
 
@@ -152,18 +156,18 @@ module.exports.executeQuery = function(dbconn, owner, sql)
             return;
         } else
         if( dbconn == null ) {
-    		g_dbpool.getConnection(function(err, connection) {
-    			if( err ) {
-    				LOG.err(owner, 'Mysql Connection Error:' + err);
+            g_dbpool.getConnection(function(err, connection) {
+                if( err ) {
+                    LOG.err(owner, 'Mysql Connection Error:' + err);
 
                     var values = {};
                     values.self = owner;
                     values.rows = rows;
                     values.err  = err;
-    				resolved( values );
-    				return;
-    			}
-    			LOG.log(owner, "SQL ConnectionID [" + connection.threadId + "]");
+                    resolved( values );
+                    return;
+                }
+                LOG.log(owner, "SQL ConnectionID [" + connection.threadId + "]");
                 connection.query(sql, function(err, rows) {
                     connection.release();
 
@@ -190,8 +194,10 @@ module.exports.executeQuery = function(dbconn, owner, sql)
 module.exports.beginTransaction = function(owner)
 {
     var query_obj = new Promise( function(resolved, rejected) {
+
 		g_dbpool.getConnection(function(err, connection) {
 			if( err ) {
+
 				LOG.err(owner, 'MYSQL Connection Error:' + err);
 				resolved( null );
 				return;
