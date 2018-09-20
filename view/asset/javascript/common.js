@@ -46,3 +46,16 @@ function isByteLength ( str, length ) {
     }
     return false;
 }
+function dateFormat ( date ) {
+    date = new Date(date);
+    if ( (date instanceof Date) == false ) return null;
+
+    var full_year    = date.getFullYear();
+    var full_month   = date.getMonth() + 1;
+    var full_date    = date.getDate();
+    var full_hours   = date.getHours();
+    var full_minutes = date.getMinutes();
+    var full_seconds = date.getSeconds();
+
+    return full_year + '-' + full_month + '-' + full_date + " " + full_hours + ":" + full_minutes + ":" + full_seconds;
+}

@@ -26,9 +26,11 @@ function getContentList ( ctt_status ) {
                                         + "<td>" + record['ctt_owner']   + "</td>"
                                         + "<td>" + record['email']       + "</td>"
                                         + "<td>" + record['ctt_status']  + "</td>"
-                                        + "<td>" + record['ctt_created'] + "</td>"
-                                        + "<td>" + record['ctt_updated'] + "</td>"
+                                        + "<td>" + dateFormat(record['ctt_created']) + "</td>"
+                                        + "<td>" + dateFormat(record['ctt_updated']) + "</td>"
                                         + "<td>" + record['mini_point']  + "</td>"
+                                        + "<td>" + record['gender_code'] + "</td>"
+                                        + "<td>" + record['age_code']    + "</td>"
                                     + "</tr>"
                 ;
             }
@@ -71,7 +73,7 @@ function addContent () {
     reqXHttp('POST', url, self, function ( result ) {
         result = JSON.parse(result);
         if ( result.code == 1000 ) {
-            location.href = '/';
+            // location.href = '/';
         } else {
             alert('[Error]:' + result.code);
         }

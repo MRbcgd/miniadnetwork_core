@@ -1,7 +1,7 @@
 /*
     author     : bak chulhyong
     created    : 2018 - 09 - 13
-    modified   : 2018 - 09 - 17
+    modified   : 2018 - 09 - 20
     description: advert regist functions
 */
 const fs = require('fs');
@@ -35,6 +35,7 @@ function addAdvert ( req, res ) {
         byte_len = EQUIP.byteCheck(( data[key] || '' ));
 
         if ( key == 'adv_owner'  && (byte_len > 0 && byte_len <= 64)  ) continue;
+        if ( key == 'email'      && (byte_len > 0 && byte_len <= 64)  ) continue;
         if ( key == 'adv_desc'   && (byte_len > 0 && byte_len <= 128) ) continue;
         if ( key == 'adv_link'   && (byte_len > 0 && byte_len <= 512) ) continue;
         if ( key == 'tgt_gender' && (byte_len > 0 && byte_len <= 2) ) continue;
@@ -50,6 +51,7 @@ function addAdvert ( req, res ) {
     }
 
     self.adv_owner  = data.adv_owner;
+    self.email      = data.email;
     self.adv_desc   = data.adv_desc;
     self.adv_link   = data.adv_link;
     self.tgt_gender = data.tgt_gender;
@@ -68,8 +70,8 @@ function addAdvert ( req, res ) {
         }
 
         // insert content
-        dbAdvert.tbAdvert.insAdvert(conn, self, self.adv_owner, self.adv_desc,
-        self.adv_link, self.adv_status).then(function ( cvalues ) {
+        dbAdvert.tbAdvert.insAdvert(conn, self, self.adv_owner, self.email,
+        self.adv_desc, self.adv_link, self.adv_status).then(function ( cvalues ) {
                 var self = cvalues.self;
                 var err  = cvalues.err;
 

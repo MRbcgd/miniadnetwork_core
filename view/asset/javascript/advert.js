@@ -20,14 +20,17 @@ function getAdvertList ( adv_status ) {
                 record = data[rows];
 
                 adv_tbody.innerHTML += "<tr>"
-                                        + "<td>" + record['adv_idx']     + "</td>"
-                                        + "<td>" + record['adv_owner']   + "</td>"
-                                        + "<td>" + record['adv_desc']    + "</td>"
-                                        + "<td>" + record['adv_link']    + "</td>"
-                                        + "<td>" + record['adv_status']  + "</td>"
-                                        + "<td>" + record['adv_created'] + "</td>"
-                                        + "<td>" + record['adv_updated'] + "</td>"
-                                        + "<td>" + record['used_point']  + "</td>"
+                                        + "<td>" + record['adv_idx']                 + "</td>"
+                                        + "<td>" + record['adv_owner']               + "</td>"
+                                        + "<td>" + record['email']                   + "</td>"
+                                        + "<td>" + record['adv_desc']                + "</td>"
+                                        + "<td>" + record['adv_link']                + "</td>"
+                                        + "<td>" + record['adv_status']              + "</td>"
+                                        + "<td>" + dateFormat(record['adv_created']) + "</td>"
+                                        + "<td>" + dateFormat(record['adv_updated']) + "</td>"
+                                        + "<td>" + record['used_point']              + "</td>"
+                                        + "<td>" + record['gender_code']             + "</td>"
+                                        + "<td>" + record['age_code']                + "</td>"
                                     + "</tr>"
                 ;
             }
@@ -41,6 +44,7 @@ function addAdvert () {
     var url = '/advert/regist/add';
     var self = {};
     self.adv_owner  = ( document.getElementById('adv_owner')  || {} ).value;
+    self.email      = ( document.getElementById('email')      || {} ).value;
     self.adv_desc   = ( document.getElementById('adv_desc')   || {} ).value;
     self.adv_link   = ( document.getElementById('adv_link')   || {} ).value;
     self.tgt_gender = ( document.getElementById('tgt_gender') || {} ).value;
@@ -48,6 +52,10 @@ function addAdvert () {
 
     if ( isByteLength(self.adv_owner, 64) == false ) {
         alert("Check Advertiser");
+        return;
+    }
+    if ( isByteLength(self.email, 64) == false ) {
+        alert("Check Email");
         return;
     }
     if ( isByteLength(self.adv_desc, 128) == false ) {

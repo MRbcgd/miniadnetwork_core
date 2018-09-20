@@ -47,7 +47,7 @@ function selContentList ( req, res ) {
                 return;
             }
         }
-
+        
         EQUIP.returnClient('SUCCESS', res, rows);
         return;
     });

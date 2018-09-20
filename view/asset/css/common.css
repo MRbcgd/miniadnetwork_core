@@ -1,19 +1,105 @@
-/* scroll table  */
-.scrolltbody {
-    display: block;
-    width: 320px;
-    border-collapse: collapse;
-    /* border: 2px solid #000; */
+/*tables*/
+table {
+    width: 100%;
+    table-layout: fixed;
 }
-.scrolltbody th { border: 1px solid #000; background: pink; }
-.scrolltbody td { border: 1px solid #000; border-top: 0; }
-.scrolltbody tbody {
-    display: block;
-    height: 200px;
-    overflow: auto;
+td {
+    text-align: center;
+    /* overflow: hidden; */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
-.scrolltbody th:nth-of-type(1), .scrolltbody td:nth-of-type(1) { width: 40px; }
-.scrolltbody th:nth-of-type(2), .scrolltbody td:nth-of-type(2) { width: 80px; }
-.scrolltbody th:nth-of-type(3), .scrolltbody td:nth-of-type(3) { width: 100px; }
-.scrolltbody th:last-child { width: 100px; }
-.scrolltbody td:last-child { width: calc( 100px - 19px );  }
+/* content */
+/* index */
+#ctt_table th:nth-child(1) {
+    width:4%;
+}
+/* content key */
+#ctt_table th:nth-child(2) {
+    width:20%;
+}
+/* content name */
+#ctt_table th:nth-child(3) {
+    width:15%;
+}
+/* content owner */
+#ctt_table th:nth-child(4) {
+    width:10%;
+}
+/* conntent email */
+#ctt_table th:nth-child(5) {
+    width:13%;
+}
+/* content status */
+#ctt_table th:nth-child(6) {
+    width:3%;
+}
+/* content created */
+#ctt_table th:nth-child(7) {
+    width:10%;
+}
+/* content updated */
+#ctt_table th:nth-child(8) {
+    width:10%;
+
+}
+/* content mini_point */
+#ctt_table th:nth-child(9) {
+    width:5%;
+}
+/* target gender */
+#ctt_table th:nth-child(10) {
+    width:5%;
+}
+/* target age */
+#ctt_table th:nth-child(11) {
+    width:5%;
+}
+
+
+/* advert */
+/* index */
+#adv_table th:nth-child(1) {
+    width:4%;
+}
+/* advertiser */
+#adv_table th:nth-child(2) {
+    width:10%;
+}
+/* advertiser email */
+#adv_table th:nth-child(3) {
+    width:13%;
+}
+/* advert slogan */
+#adv_table th:nth-child(4) {
+    width:17%;
+}
+/* advert link */
+#adv_table th:nth-child(5) {
+    width:18%;
+}
+/* advert status */
+#adv_table th:nth-child(6) {
+    width:3%;
+}
+/* advert created */
+#adv_table th:nth-child(7) {
+    width:10%;
+}
+/* advert updated */
+#adv_table th:nth-child(8) {
+    width:10%;
+}
+/* advert used point */
+#adv_table th:nth-child(9) {
+    width:5%;
+}
+/* target gender */
+#adv_table th:nth-child(10) {
+    width:5%;
+}
+/* target age */
+#adv_table th:nth-child(11) {
+    width:5%;
+}
