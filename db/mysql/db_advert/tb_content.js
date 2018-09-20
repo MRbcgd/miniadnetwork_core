@@ -6,7 +6,7 @@
 */
 const MYSQL = require('./mysql.js');
 const UUID  = require('../../../common/uuid.js');
-
+const EQUIP = require('../../../common/equip.js');
 // select
 module.exports.selContent = function ( dbconn, owner, ctt_status ) {
     var sql = "SELECT CTT.ctt_idx "
@@ -51,13 +51,17 @@ module.exports.insContent = function ( dbconn, owner, ctt_name,
                     + ", ctt_owner "
                     + ", email "
                     + ", ctt_status "
+                    + ", ctt_created "
+                    + ", ctt_updated "
               + ") "
             + "VALUES ( "
-                    + "'"  + UUID.generate64() + "' "
-                    + ",'" + ctt_name          + "' "
-                    + ",'" + ctt_owner         + "' "
-                    + ",'" + email             + "' "
-                    + ",'" + ctt_status        + "' "
+                    + "'"  + UUID.generate64()      + "' "
+                    + ",'" + ctt_name               + "' "
+                    + ",'" + ctt_owner              + "' "
+                    + ",'" + email                  + "' "
+                    + ",'" + ctt_status             + "' "
+                    + ",'" + EQUIP.getCurrentTime() + "' "
+                    + ",'" + EQUIP.getCurrentTime() + "' "
             + ") "
     ;
     return MYSQL.executeQuery(dbconn, owner, sql);

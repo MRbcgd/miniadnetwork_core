@@ -6,6 +6,7 @@
 */
 const MYSQL = require('./mysql.js');
 const UUID  = require('../../../common/uuid.js');
+const EQUIP = require('../../../common/equip.js');
 
 // select
 module.exports.selAdvert = function ( dbconn, owner, adv_status ) {
@@ -52,14 +53,18 @@ module.exports.insAdvert = function ( dbconn, owner, adv_owner, email, adv_desc,
                     + ", adv_desc "
                     + ", adv_link "
                     + ", adv_status "
+                    + ", adv_created "
+                    + ", adv_updated "
               + ") "
             + "VALUES ( "
-                    + "'"  + UUID.generate64() + "' "
-                    + ",'" + adv_owner         + "' "
-                    + ",'" + email             + "' "
-                    + ",'" + adv_desc          + "' "
-                    + ",'" + adv_link          + "' "
-                    + ",'" + adv_status        + "' "
+                    + "'"  + UUID.generate64()      + "' "
+                    + ",'" + adv_owner              + "' "
+                    + ",'" + email                  + "' "
+                    + ",'" + adv_desc               + "' "
+                    + ",'" + adv_link               + "' "
+                    + ",'" + adv_status             + "' "
+                    + ",'" + EQUIP.getCurrentTime() + "' "
+                    + ",'" + EQUIP.getCurrentTime() + "' "
             + ") "
     ;
     return MYSQL.executeQuery(dbconn, owner, sql);

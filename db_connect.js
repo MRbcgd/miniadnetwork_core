@@ -15,5 +15,4 @@ dbAdvert.connect('db_advert', function ( err ) {
         process.exit();
         return;
     }
-    console.log("success");
 });
