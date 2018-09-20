@@ -73,7 +73,7 @@ function addContent () {
     reqXHttp('POST', url, self, function ( result ) {
         result = JSON.parse(result);
         if ( result.code == 1000 ) {
-            // location.href = '/';
+            location.href = '/';
         } else {
             alert('[Error]:' + result.code);
         }
