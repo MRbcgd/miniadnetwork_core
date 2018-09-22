@@ -13,7 +13,7 @@ module.exports.config = {
         "host"              : 'us-cdbr-iron-east-01.cleardb.net',
         "port"              : 3306                              ,
         "user"              : 'bb199af2d42a06'                  ,
-        "password"          : 'c2495206213a2fe'                 ,
+        "password"          : '98b5d36aba5b5ae'                 ,
         "database"          : 'heroku_8dc2d6c2cd1cfdb'          ,
         "connectionLimit"   : 0                                 ,
         "waitForConnections": true                              ,
