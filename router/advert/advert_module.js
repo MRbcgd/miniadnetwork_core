@@ -1,7 +1,7 @@
 /*
     author     : bak chulhyong
     created    : 2018 - 09 - 14
-    modified   : 2018 - 09 - 20
+    modified   : 2018 - 09 - 22
     description: webbanner module
 */
 // MODULE LIST

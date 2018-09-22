@@ -13,11 +13,22 @@ const ERROR_DATA  = ( ERROR['error']   || null );
 
 const G_PRJ_PATH = ( __dirname + '/..' );
 
+var G_CFG_DATA = {};
+
 // CONFIG
 module.exports.getConfig = function ( key ) {
     if ( JSON_DATA == null  ) return null;
 
     return ( JSON_DATA[key] || null );
+}
+module.exports.setDBConfig = function ( cfg_data ) {
+    G_CFG_DATA = cfg_data;
+    return;
+}
+module.exports.getDBConfig = function ( cfg_name ) {
+    if ( G_CFG_DATA == null ) return null;
+
+    return G_CFG_DATA[cfg_name];
 }
 // DIR
 module.exports.getProjectPath = function () {

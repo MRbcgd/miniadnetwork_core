@@ -197,7 +197,6 @@ module.exports.beginTransaction = function(owner)
 
 		g_dbpool.getConnection(function(err, connection) {
 			if( err ) {
-
 				LOG.err(owner, 'MYSQL Connection Error:' + err);
 				resolved( null );
 				return;
