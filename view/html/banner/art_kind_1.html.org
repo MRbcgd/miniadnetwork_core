@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='ko' dir='ltr'>
     <head>
-        <meta charset='utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title></title>
         <style>
             .art_kind_1 {
@@ -9,7 +9,7 @@
                 height      : calc(100vw * (100 / 640));
                 border-style: solid;
                 border-width: 0.1px;
-                cursor      : pointer; 
+                cursor      : pointer;
             }
             .art_kind_1 .adv_owner {
                 font-size   : 2vw;
@@ -28,15 +28,9 @@
         </style>
     </head>
     <body>
-        <div class='art_kind_1' onclick='getAdvLink();'>
+        <div class='art_kind_1' onclick='window.open("$$ADV_LINK$$");'>
             <div class='adv_owner'>$$ADV_OWNER$$</div>
             <div class='adv_desc'>$$ADV_DESC$$</div>
         </div>
-        <script type='text/javascript'>
-            function getAdvLink () {
-                window.open('$$ADV_LINK$$');
-                return;
-            }
-        </script>
     </body>
 </html>
